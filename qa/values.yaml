@@ -1,1 +1,22 @@
 replicaCount: 3
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations: 
+    ingress.kubernetes.io/ssl-redirect: "false"
+    cert-manager.io/cluster-issuer: letsencrypt-prod-dns01
+    acme.cert-manager.io/http01-edit-in-place: "true"
+  hosts:
+    - host: artemis-qa.awssimpilified.net
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: 
+     - secretName: artemis-tls
+       hosts:
+         - artemis-qa.awssimpilified.net
