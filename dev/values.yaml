@@ -1,5 +1,13 @@
 replicaCount: 3
 
+
+image:
+  repository: nginx
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "10.0.0"
+
+
 service:
   type: ClusterIP
   port: 80
@@ -12,11 +20,11 @@ ingress:
     cert-manager.io/cluster-issuer: letsencrypt-prod-dns01
     acme.cert-manager.io/http01-edit-in-place: "true"
   hosts:
-    - host: artemis-qa.awssimpilified.net
+    - host: artemis-dev.awssimpilified.net
       paths:
         - path: /
           pathType: ImplementationSpecific
   tls: 
      - secretName: artemis-tls
        hosts:
-         - artemis-qa.awssimpilified.net
+         - artemis-dev.awssimpilified.net
