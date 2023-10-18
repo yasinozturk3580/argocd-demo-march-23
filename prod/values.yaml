@@ -1,6 +1,17 @@
 replicaCount: 3
 
 
+image:
+  repository: nginx  # artemis link
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "7.0.0"
+
+
+
+
+
+
 service:
   type: ClusterIP
   port: 80
